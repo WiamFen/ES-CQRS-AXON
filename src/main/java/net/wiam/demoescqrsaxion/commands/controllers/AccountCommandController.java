@@ -3,10 +3,7 @@ package net.wiam.demoescqrsaxion.commands.controllers;
 import net.wiam.demoescqrsaxion.commands.commands.AddAccountCommand;
 import net.wiam.demoescqrsaxion.commands.dto.AddNewAccountRequestDTO;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -29,5 +26,10 @@ public class AccountCommandController {
         ));
         return response;
 
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String exceptionHandler(Exception e) {
+        return e.getMessage();
     }
 }
